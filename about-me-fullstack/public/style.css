@@ -1,4 +1,4 @@
-:root{--bg:#07080f;--t:#f3f4ff;--m:#9da0c0;--g:rgba(255,255,255,.07);--gb:rgba(255,255,255,.12);--in:rgba(255,255,255,.06);--hl:rgba(255,255,255,.16);--v:#8b7bff;--c:#2dd4bf;--p:#ff6fae;--o:#fbbf24;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{--bg:#07080f;--t:#f3f4ff;--m:#9da0c0;--g:rgba(255,255,255,.07);--gb:rgba(255,255,255,.12);--in:rgba(255,255,255,.06);--hl:rgba(255,255,255,.16);--v:#8b7bff;--c:#2dd4bf;--p:#ff6fae;--o:#fbbf24;--k:#7ee08a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f0effb;--t:#14122e;--m:#5a5880;--g:rgba(255,255,255,.65);--gb:rgba(20,18,46,.09);--in:rgba(20,18,46,.05);--hl:#fff}}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07080f}}
 :root[data-theme="dark"]{--bg:#07080f}
@@ -82,6 +82,6 @@ h2.sec{margin:30px 4px 0;font-size:22px;letter-spacing:-.02em}
 .lnk{background:none;border:0;color:var(--m);font:700 13px Manrope,sans-serif;cursor:pointer;padding:4px 0}
 nav button{display:flex;align-items:center;gap:7px}
 nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
-@media(max-width:720px){header{position:static;flex-direction:column;align-items:stretch;gap:8px;padding:12px 10px 10px;border-radius:26px}.logo{text-align:center;font-size:18px}nav{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;width:100%;padding:4px;border-radius:999px;background:var(--in);border:1px solid var(--gb)}nav button{flex-direction:column;justify-content:center;gap:3px;font-size:11.5px;padding:8px 2px}nav svg{width:18px;height:18px}main{margin-top:14px}.hero::after{opacity:.25}}
+@media(max-width:720px){header{position:static;flex-direction:column;align-items:stretch;gap:8px;padding:12px 10px 10px;border-radius:26px}.logo{text-align:center;font-size:18px}nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:100%;padding:4px;border-radius:999px;background:var(--in);border:1px solid var(--gb)}nav button{flex-direction:column;justify-content:center;gap:3px;font-size:10.5px;padding:8px 2px}nav svg{width:18px;height:18px}main{margin-top:14px}.hero::after{opacity:.25}}
 .av.sm{width:30px;height:30px;font-size:14px;margin-right:8px;vertical-align:middle;display:inline-grid}
 @media(prefers-reduced-motion:reduce){.bar i,.btn,nav button,.op{transition:none}#app>*{animation:none}}

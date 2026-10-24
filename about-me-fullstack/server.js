@@ -57,6 +57,8 @@ function clean(r) {
   const n = r.enn;
   if (n && int(n.type, 1, 9) && NB[n.type].includes(n.wing) && Array.isArray(n.sc) && n.sc.length === 9 && n.sc.every((x) => int(x, 0, 15)))
     o.enn = { type: n.type, wing: n.wing, sc: n.sc, at };
+  const j = r.job;
+  if (j && /^[RIASEC]{3}$/.test(j.code) && Array.isArray(j.sc) && j.sc.length === 6 && j.sc.every((x) => int(x, 8, 40))) o.job = { code: j.code, sc: j.sc, at };
   return o;
 }
 
