@@ -51,9 +51,9 @@ function clean(r) {
   if (m && /^[EI][SN][TF][JP]$/.test(m.type) && ["A", "T"].includes(m.id) && Array.isArray(m.pct) && m.pct.length === 5 && m.pct.every((x) => int(x, 0, 100)))
     o.mbti = { type: m.type, id: m.id, pct: m.pct, at };
   const i = r.iq;
-  if (i && int(i.score, 70, 148) && int(i.ok, 0, 30)) o.iq = { score: i.score, ok: i.ok, sec: int(i.sec, 0, 86400) ? i.sec : 0, at };
+  if (i && int(i.score, 70, 148) && int(i.ok, 0, 40)) o.iq = { score: i.score, ok: i.ok, sec: int(i.sec, 0, 86400) ? i.sec : 0, at };
   const e = r.eq;
-  if (e && int(e.score, 0, 100)) o.eq = { score: e.score, at };
+  if (e && int(e.score, 0, 100)) o.eq = { score: e.score, at, d: Array.isArray(e.d) && e.d.length === 4 && e.d.every((x) => int(x, 0, 100)) ? e.d : undefined };
   const n = r.enn;
   if (n && int(n.type, 1, 9) && NB[n.type].includes(n.wing) && Array.isArray(n.sc) && n.sc.length === 9 && n.sc.every((x) => int(x, 0, 15)))
     o.enn = { type: n.type, wing: n.wing, sc: n.sc, at };
@@ -121,8 +121,14 @@ app.put("/api/me", auth, wrap(async (req, res) => {
 
 app.get("/api/leaderboard", wrap(async (req, res) => {
   const col = req.query.type === "eq" ? "eq" : "iq"; // faqat ruxsat etilgan ustun nomlari
-  const r = await pool.query(`SELECT name, ${col} AS score FROM users WHERE ${col} IS NOT NULL ORDER BY ${col} DESC, created ASC LIMIT 20`);
+  const r = await pool.query(`SELECT name, ${col} AS score FROM users ORDER BY ${col} DESC NULLS LAST, created ASC LIMIT 50`);
   res.json(r.rows);
+}));
+
+app.get("/api/user/:name", wrap(async (req, res) => {
+  const r = await pool.query("SELECT * FROM users WHERE lower(name) = lower($1)", [str(req.params.name, 20)]);
+  if (!r.rows[0]) return res.status(404).json({ error: "Foydalanuvchi topilmadi" });
+  res.json(out(r.rows[0]));
 }));
 
 app.use(express.static(path.join(__dirname, "public")));
