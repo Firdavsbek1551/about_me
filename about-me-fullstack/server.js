@@ -60,7 +60,7 @@ function clean(r) {
   const j = r.job;
   if (j && /^[RIASEC]{3}$/.test(j.code) && Array.isArray(j.sc) && j.sc.length === 6 && j.sc.every((x) => int(x, 8, 40))) o.job = { code: j.code, sc: j.sc, at };
   const p = r.pers;
-  if (p && Array.isArray(p.tr) && p.tr.length === 8 && p.tr.every((x) => int(x, 2, 10))) o.pers = { tr: p.tr, at };
+  if (p && Array.isArray(p.tr) && p.tr.length === 8 && p.tr.every((x) => int(x, 2, 20))) o.pers = { tr: p.tr, k: p.k === 4 ? 4 : 2, at };
   const c = r.cv;
   if (c && typeof c === "object") {
     const L = (arr, max, keys, lens) => (Array.isArray(arr) ? arr.slice(0, max) : []).map((e) => { const x = {}; keys.forEach((k, i) => (x[k] = str(e && e[k], lens[i]))); return x; });
