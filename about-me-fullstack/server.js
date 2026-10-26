@@ -59,6 +59,21 @@ function clean(r) {
     o.enn = { type: n.type, wing: n.wing, sc: n.sc, at };
   const j = r.job;
   if (j && /^[RIASEC]{3}$/.test(j.code) && Array.isArray(j.sc) && j.sc.length === 6 && j.sc.every((x) => int(x, 8, 40))) o.job = { code: j.code, sc: j.sc, at };
+  const p = r.pers;
+  if (p && Array.isArray(p.tr) && p.tr.length === 8 && p.tr.every((x) => int(x, 2, 10))) o.pers = { tr: p.tr, at };
+  const c = r.cv;
+  if (c && typeof c === "object") {
+    const L = (arr, max, keys, lens) => (Array.isArray(arr) ? arr.slice(0, max) : []).map((e) => { const x = {}; keys.forEach((k, i) => (x[k] = str(e && e[k], lens[i]))); return x; });
+    o.cv = {
+      name: str(c.name, 60), title: str(c.title, 80), phone: str(c.phone, 30), email: str(c.email, 80), city: str(c.city, 50),
+      about: str(c.about, 600), skills: str(c.skills, 300), langs: str(c.langs, 200),
+      tpl: ["classic", "modern", "minimal"].includes(c.tpl) ? c.tpl : "modern",
+      ac: typeof c.ac === "string" && /^#[0-9a-fA-F]{6}$/.test(c.ac) ? c.ac : "#6a5cff",
+      showPhoto: !!c.showPhoto, showTests: !!c.showTests,
+      exp: L(c.exp, 6, ["co", "role", "per", "desc"], [80, 80, 40, 400]),
+      edu: L(c.edu, 4, ["inst", "deg", "per"], [100, 100, 40]),
+    };
+  }
   return o;
 }
 

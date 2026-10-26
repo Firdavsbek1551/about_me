@@ -32,7 +32,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid
 .tc{padding:26px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;--a:var(--v)}
 .tc::before{content:"";position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;background:var(--a);opacity:.3;filter:blur(44px);pointer-events:none}
 .tc>*{position:relative}
-.tc h3{margin:0;font-size:46px;letter-spacing:-.04em;color:var(--a);line-height:1}
+.tc h3{margin:0;font-size:clamp(30px,8vw,42px);letter-spacing:-.03em;overflow-wrap:anywhere;color:var(--a);line-height:1.05}
 .tc p{margin:0;color:var(--m);flex:1}
 .tc small,.box small{color:var(--m)}
 .box{padding:30px;max-width:640px;margin:0 auto}
@@ -67,7 +67,8 @@ tr:first-child td{border-top:0}
 td:first-child{width:44px;font-weight:800;color:var(--m)}
 td:last-child{text-align:right;font-weight:800;font-size:18px}
 tr.me{background:var(--in)}
-.tag{font-size:11px;color:var(--m);border:1px solid var(--gb);border-radius:999px;padding:1px 8px;margin-left:6px}
+.tag{display:inline-block;font:700 11px/1.6 Manrope,system-ui,sans-serif;letter-spacing:0;white-space:nowrap;vertical-align:middle;color:var(--m);border:1px solid var(--gb);border-radius:999px;padding:1px 9px;margin-left:6px}
+.tag.on{color:var(--c);border-color:var(--c);margin-left:0}
 .lbw{padding:20px;overflow-x:auto}
 footer{text-align:center;color:var(--m);font-size:12px;padding:0 16px 24px;max-width:700px;margin:0 auto}
 h2.sec{margin:30px 4px 0;font-size:22px;letter-spacing:-.02em}
@@ -84,4 +85,12 @@ nav button{display:flex;align-items:center;gap:7px}
 nav svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
 @media(max-width:720px){header{position:static;flex-direction:column;align-items:stretch;gap:8px;padding:12px 10px 10px;border-radius:26px}.logo{text-align:center;font-size:18px}nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;width:100%;padding:4px;border-radius:999px;background:var(--in);border:1px solid var(--gb)}nav button{flex-direction:column;justify-content:center;gap:3px;font-size:10.5px;padding:8px 2px}nav svg{width:18px;height:18px}main{margin-top:14px}.hero::after{opacity:.25}}
 .av.sm{width:30px;height:30px;font-size:14px;margin-right:8px;vertical-align:middle;display:inline-grid}
+.fl{display:block;font-size:12px;color:var(--m);margin:0 0 8px}
+.fl input,.fl textarea{margin-top:4px}
+textarea{width:100%;padding:12px 14px;margin:0;border-radius:14px;border:1px solid var(--gb);background:var(--in);color:var(--t);font:600 15px Manrope,system-ui,sans-serif;resize:vertical}
+.cvb{padding:12px;border:1px solid var(--gb);border-radius:16px;margin-bottom:10px;background:var(--in)}
+.cvwrap{display:grid;grid-template-columns:minmax(300px,400px) 1fr;gap:16px;align-items:start}
+#cvfit{width:100%;overflow:hidden;border-radius:14px;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+#cvp{width:794px}
+@media(max-width:860px){.cvwrap{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.bar i,.btn,nav button,.op{transition:none}#app>*{animation:none}}
